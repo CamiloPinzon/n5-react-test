@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
+import { ligthTheme, darkTheme } from './utils/themes/themes.util';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from './index.styles';
+import { VisualThemeContext } from './contexts/visual-theme.context';
+
+import Navigation from './routes/navigaton/navigation.component';
+import Shop from './routes/shop/shop.component';
+import Checkout from './routes/checkout/checkout.component';
+
+const  App = () => {
+  const { defaultTheme  } = useContext(VisualThemeContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <ThemeProvider theme={ defaultTheme ? ligthTheme : darkTheme}>
+      <GlobalStyle/>
+      <Routes>
+        <Route path='/' element={<Navigation />}>
+          <Route index path='/' element={<Shop/>}></Route>
+          <Route path='checkout' element={<Checkout/>}></Route>
+        </Route>
+      </Routes>
+    </ThemeProvider>
+)}
 
 export default App;
