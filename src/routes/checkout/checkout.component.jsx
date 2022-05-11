@@ -7,7 +7,7 @@ import Button from '../../components/button/button.component';
 import {Total, CheckoutHeader, HeaderBlock, CheckoutContainer} from './checkout.styles';
 
 const Checkout = () => {
-    const { cartItems, cartTotal } = useContext(CartContext);
+    const { cartItems, cartTotal, payCart } = useContext(CartContext);
 
     return(
         <CheckoutContainer>
@@ -34,7 +34,7 @@ const Checkout = () => {
                 )
             }
             <Total>Total: ${cartTotal}</Total>
-            <Button>Pay</Button>
+            <Button onClick={payCart}>Pay</Button>
         </CheckoutContainer>
 
     )

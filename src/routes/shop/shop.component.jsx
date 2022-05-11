@@ -11,7 +11,7 @@ const Shop = () => {
     <ProductsContainer>
     {
     productsMap.map((product) => (
-      <ProductCard key={product.id} {...product} />
+      product.amount > 0 ? <ProductCard key={product.id} {...product} /> : ''
     ))
     }
     </ProductsContainer>
