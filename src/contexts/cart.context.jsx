@@ -79,6 +79,7 @@ export const CartProvider = ({children}) =>{
 
     const payCart = () => {
         updateProductsMap(cartItems);
+        setCartItems([]);
     }
 
     const value = {
